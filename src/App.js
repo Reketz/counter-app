@@ -1,25 +1,26 @@
-import logo from './logo.svg';
+import { useState } from 'react'
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const style = {fontSize: "24px", margin: "12px"};
+
+const Button = ({ handleClick, name }) => {
+    console.log(`${name} rendered`)
+    return <button style={style} onClick={handleClick}>{name}</button>
 }
 
-export default App;
+export default function App() {
+
+    console.log('counter rendered')
+    const [countOne, setCountOne] = useState(0)
+    const [countTwo, setCountTwo] = useState(0)
+
+    return (
+        <div className='App'>
+            <p style={style} >{countOne}</p>
+            <p style={style} >{countTwo}</p>
+
+            <Button handleClick={() => setCountOne(countOne + 1)} name="+1" />
+            <Button handleClick={() => setCountTwo(countTwo - 1)} name="-1" />
+        </div>
+    )
+}
